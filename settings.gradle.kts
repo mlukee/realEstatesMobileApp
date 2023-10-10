@@ -15,4 +15,4 @@ dependencyResolutionManagement {
 
 rootProject.name = "PORAapplication"
 include(":app")
- 
+include(":lib")

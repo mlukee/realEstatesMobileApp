@@ -9,13 +9,33 @@
 
     <Button
         android:id="@+id/buttonInfo"
-        android:layout_width="wrap_content"
+        android:layout_width="100dp"
         android:layout_height="wrap_content"
-        android:layout_marginEnd="8dp"
-        android:layout_marginBottom="32dp"
-        android:backgroundTint="@color/material_dynamic_primary60"
-        android:onClick="onButttonInfoClick"
+        android:layout_marginBottom="12dp"
+        android:backgroundTint="@android:color/system_accent1_300"
+        android:onClick="onButtonInfoClick"
         android:text="Info"
+        app:layout_constraintBottom_toTopOf="@+id/buttonExit"
+        app:layout_constraintEnd_toEndOf="parent" />
+
+    <Button
+        android:id="@+id/buttonAdd"
+        android:layout_width="120dp"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="12dp"
+        android:backgroundTint="@android:color/holo_green_dark"
+        android:onClick="onButtonAddClick"
+        android:text="Add"
+        app:layout_constraintBottom_toTopOf="@+id/buttonInfo"
+        app:layout_constraintEnd_toEndOf="parent" />
+
+    <Button
+        android:id="@+id/buttonExit"
+        android:layout_width="80dp"
+        android:layout_height="wrap_content"
+        android:backgroundTint="@android:color/holo_red_light"
+        android:onClick="onButtonExitClick"
+        android:text="Exit"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent" />
 
@@ -42,7 +62,7 @@
         app:layout_constraintEnd_toStartOf="@+id/guideline"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.739" />
+        app:layout_constraintVertical_bias="0.826" />
 
     <EditText
         android:id="@+id/editTextArea"

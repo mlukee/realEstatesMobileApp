@@ -13,6 +13,6 @@ data class RealEstate(
     }
 
     override fun toString(): String {
-        return "RealEstate(id=$id, propertyType=$propertyType, area=$area, price=$price)"
+        return "Property Type: $propertyType \nArea: $area \nPrice= $price"
     }
 }

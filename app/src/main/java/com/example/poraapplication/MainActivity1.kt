@@ -1,25 +1,25 @@
 package com.example.poraapplication
 
-import android.R.attr.value
 import android.app.Activity
+import android.content.Context
 import android.content.Intent
 import android.net.Uri
+import android.os.Build
 import android.os.Bundle
+import android.os.VibrationEffect
 import android.view.View
 import android.widget.ArrayAdapter
 import android.widget.Toast
 import androidx.activity.result.ActivityResult
-import androidx.activity.result.ActivityResultLauncher
 import androidx.activity.result.contract.ActivityResultContracts
-import androidx.activity.result.registerForActivityResult
 import androidx.appcompat.app.AppCompatActivity
-import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.lib.RealEstate
 import com.example.poraapplication.databinding.ActivityMain1Binding
-import com.example.poraapplication.databinding.ActivityMainBinding
 import io.github.serpro69.kfaker.Faker
+import kotlinx.serialization.json.Json
 import java.math.RoundingMode
 import kotlin.random.Random
+import android.os.Vibrator
 
 
 class MainActivity1 : AppCompatActivity() {
@@ -29,7 +29,6 @@ class MainActivity1 : AppCompatActivity() {
     private val faker = Faker()
 
 
-
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         binding = ActivityMain1Binding.inflate(layoutInflater)
@@ -37,10 +36,11 @@ class MainActivity1 : AppCompatActivity() {
         adapter = ArrayAdapter(this, android.R.layout.simple_list_item_1)
 
         binding.listView.adapter = adapter
-        val realEstates = (1..10).map {
+        val realEstates = (1..5).map {
             RealEstate(
                 faker.company.industry(),
-                Random.nextDouble(50.0, 200.0).toBigDecimal().setScale(2, RoundingMode.DOWN).toDouble(),
+                Random.nextDouble(50.0, 200.0).toBigDecimal().setScale(2, RoundingMode.DOWN)
+                    .toDouble(),
                 Random.nextDouble(50000.0, 500000.0).toBigDecimal().setScale(2, RoundingMode.DOWN)
                     .toDouble()
             )
@@ -49,22 +49,60 @@ class MainActivity1 : AppCompatActivity() {
 
     }
 
-    private val getDataFromMainActivity1 = registerForActivityResult(ActivityResultContracts.StartActivityForResult()) { result: ActivityResult ->
-        if (result.resultCode == Activity.RESULT_OK) {
-            val intent = result.data
-            val propertyType = intent?.getStringExtra(InputTypes.PROPERTY_TYPE.name)
-            val area = intent?.getDoubleExtra(InputTypes.AREA.name, 0.0)
-            val price = intent?.getDoubleExtra(InputTypes.PRICE.name, 0.0)
-            val realEstate = RealEstate(propertyType!!, area!!, price!!)
-            adapter.add(realEstate.toString())
+    private val getDataFromMainActivity1 =
+        registerForActivityResult(ActivityResultContracts.StartActivityForResult()) { result: ActivityResult ->
+            if (result.resultCode == Activity.RESULT_OK) {
+                val intent = result.data
+                val propertyType = intent?.getStringExtra(InputTypes.PROPERTY_TYPE.name)
+                val area = intent?.getDoubleExtra(InputTypes.AREA.name, 0.0)
+                val price = intent?.getDoubleExtra(InputTypes.PRICE.name, 0.0)
+                val realEstate = RealEstate(propertyType!!, area!!, price!!)
+                adapter.add(realEstate.toString())
+            }
+        }
+
+    private val getDataFromQRCode =
+        registerForActivityResult(ActivityResultContracts.StartActivityForResult()) { result ->
+            if (result.resultCode == Activity.RESULT_OK) {
+                val intent = result.data
+                val scannedValue = intent?.getStringExtra("SCAN_RESULT")
+
+                val parsedRealestate = parseJSON(scannedValue)
+
+                if (parsedRealestate != null) {
+                    Toast.makeText(this, "Got RealEstate.", Toast.LENGTH_SHORT).show()
+                    vibrate()
+                    adapter.add(parsedRealestate.toString())
+                }
+            } else {
+                Toast.makeText(this, "QR Code scanning failed", Toast.LENGTH_SHORT).show()
+            }
+        }
+
+    private fun parseJSON(scannedValue: String?): RealEstate? {
+        return try {
+            Json.decodeFromString<RealEstate>(scannedValue!!)
+        } catch (e: Exception) {
+            Toast.makeText(this, "Failed to parse text.", Toast.LENGTH_SHORT).show()
+            null
         }
     }
 
-    private val getDataFromQRCode = registerForActivityResult(ActivityResultContracts.StartActivityForResult()){
-        result: ActivityResult ->
-        if(result.resultCode == Activity.RESULT_OK) {
-            val intent = result.data
-            Toast.makeText(this, intent?.getStringExtra("QRCode"), Toast.LENGTH_SHORT).show()
+    //TODO: insert data from QR Code to the inputs in MainActivity.kt
+
+    private fun vibrate() {
+        val vibrator = getSystemService(Context.VIBRATOR_SERVICE) as Vibrator
+        if (vibrator.hasVibrator()) { // Vibrator availability checking
+            if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
+                vibrator.vibrate(
+                    VibrationEffect.createOneShot(
+                        500,
+                        VibrationEffect.DEFAULT_AMPLITUDE
+                    )
+                )
+            } else {
+                vibrator.vibrate(500) // Vibrate method for below API Level 26
+            }
         }
     }
 
@@ -74,11 +112,11 @@ class MainActivity1 : AppCompatActivity() {
     }
 
     fun onQRCButtonClick(view: View) {
-        try{
-            val intent = Intent("com.google.zxing.client.android.SCAN")
+        try {
+            val intent = Intent("com.google.zxing.client.android.SCAN" )
             intent.putExtra("SCAN_MODE", "QR_CODE_MODE")
             getDataFromQRCode.launch(intent)
-        }catch (e: Exception){
+        } catch (e: Exception) {
             val marketUri = Uri.parse("market://details?id=com.google.zxing.client.android")
             val marketIntent = Intent(Intent.ACTION_VIEW, marketUri)
             startActivity(marketIntent)

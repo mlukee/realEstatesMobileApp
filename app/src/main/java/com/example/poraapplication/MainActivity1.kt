@@ -20,23 +20,28 @@ import kotlinx.serialization.json.Json
 import java.math.RoundingMode
 import kotlin.random.Random
 import android.os.Vibrator
+import androidx.recyclerview.widget.LinearLayoutManager
+import androidx.recyclerview.widget.RecyclerView
 
 
 class MainActivity1 : AppCompatActivity() {
-    private var realEstates = mutableListOf<RealEstate>()
     private lateinit var binding: ActivityMain1Binding
-    private lateinit var adapter: ArrayAdapter<String>
     private val faker = Faker()
+    private var realEstates = MutableList<RealEstate> (0) { RealEstate("", 0.0, 0.0) }
+    private lateinit var recyclerView: RecyclerView
+    private lateinit var realEstateAdapter: RealEstateAdapter
 
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         binding = ActivityMain1Binding.inflate(layoutInflater)
         setContentView(binding.root)
-        adapter = ArrayAdapter(this, android.R.layout.simple_list_item_1)
 
-        binding.listView.adapter = adapter
-        val realEstates = (1..5).map {
+        recyclerView = binding.recyclerView
+        recyclerView.setHasFixedSize(true)
+        recyclerView.layoutManager = LinearLayoutManager(this)
+
+        val realEstates = (1..3).map {
             RealEstate(
                 faker.company.industry(),
                 Random.nextDouble(50.0, 200.0).toBigDecimal().setScale(2, RoundingMode.DOWN)
@@ -45,7 +50,9 @@ class MainActivity1 : AppCompatActivity() {
                     .toDouble()
             )
         }
-        adapter.addAll(realEstates.map { it.toString() })
+
+        realEstateAdapter = RealEstateAdapter(realEstates.toMutableList())
+        recyclerView.adapter = realEstateAdapter
 
     }
 
@@ -57,7 +64,8 @@ class MainActivity1 : AppCompatActivity() {
                 val area = intent?.getDoubleExtra(InputTypes.AREA.name, 0.0)
                 val price = intent?.getDoubleExtra(InputTypes.PRICE.name, 0.0)
                 val realEstate = RealEstate(propertyType!!, area!!, price!!)
-                adapter.add(realEstate.toString())
+                realEstates.add(realEstate)
+                realEstateAdapter.addRealEstate(realEstate)
             }
         }
 
@@ -72,7 +80,8 @@ class MainActivity1 : AppCompatActivity() {
                 if (parsedRealestate != null) {
                     Toast.makeText(this, "Got RealEstate.", Toast.LENGTH_SHORT).show()
                     vibrate()
-                    adapter.add(parsedRealestate.toString())
+                    realEstates.add(parsedRealestate)
+                    realEstateAdapter.addRealEstate(parsedRealestate)
                 }
             } else {
                 Toast.makeText(this, "QR Code scanning failed", Toast.LENGTH_SHORT).show()
@@ -81,14 +90,13 @@ class MainActivity1 : AppCompatActivity() {
 
     private fun parseJSON(scannedValue: String?): RealEstate? {
         return try {
-            Json.decodeFromString<RealEstate>(scannedValue!!)
+            val realEstate = Json.decodeFromString<RealEstate>(scannedValue!!)
+            realEstate
         } catch (e: Exception) {
             Toast.makeText(this, "Failed to parse text.", Toast.LENGTH_SHORT).show()
             null
         }
     }
-
-    //TODO: insert data from QR Code to the inputs in MainActivity.kt
 
     private fun vibrate() {
         val vibrator = getSystemService(Context.VIBRATOR_SERVICE) as Vibrator
@@ -113,7 +121,7 @@ class MainActivity1 : AppCompatActivity() {
 
     fun onQRCButtonClick(view: View) {
         try {
-            val intent = Intent("com.google.zxing.client.android.SCAN" )
+            val intent = Intent("com.google.zxing.client.android.SCAN")
             intent.putExtra("SCAN_MODE", "QR_CODE_MODE")
             getDataFromQRCode.launch(intent)
         } catch (e: Exception) {

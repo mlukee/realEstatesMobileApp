@@ -20,6 +20,8 @@ import kotlinx.serialization.json.Json
 import java.math.RoundingMode
 import kotlin.random.Random
 import android.os.Vibrator
+import android.view.animation.Animation
+import android.view.animation.AnimationUtils
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 
@@ -31,6 +33,12 @@ class MainActivity1 : AppCompatActivity() {
     private lateinit var recyclerView: RecyclerView
     private lateinit var realEstateAdapter: RealEstateAdapter
 
+    private val rotateOpen: Animation by lazy { AnimationUtils.loadAnimation(this, R.anim.rotate_open_anim) }
+    private val rotateClose: Animation by lazy { AnimationUtils.loadAnimation(this, R.anim.rotate_close_anim) }
+    private val fromBottom: Animation by lazy { AnimationUtils.loadAnimation(this, R.anim.from_bottom_anim) }
+    private val toBottom: Animation by lazy { AnimationUtils.loadAnimation(this, R.anim.to_bottom_anim) }
+
+    private var clicked = false
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -55,6 +63,7 @@ class MainActivity1 : AppCompatActivity() {
         recyclerView.adapter = realEstateAdapter
 
     }
+    //TODO: Create Detailed activity if time allows
 
     private val getDataFromMainActivity1 =
         registerForActivityResult(ActivityResultContracts.StartActivityForResult()) { result: ActivityResult ->
@@ -93,7 +102,7 @@ class MainActivity1 : AppCompatActivity() {
             val realEstate = Json.decodeFromString<RealEstate>(scannedValue!!)
             realEstate
         } catch (e: Exception) {
-            Toast.makeText(this, "Failed to parse text.", Toast.LENGTH_SHORT).show()
+            Toast.makeText(applicationContext, "Failed to parse text.", Toast.LENGTH_SHORT).show();
             null
         }
     }
@@ -115,11 +124,19 @@ class MainActivity1 : AppCompatActivity() {
     }
 
     fun onAddButtonClick(view: View) {
+        setVisibility(clicked)
+        setAnimation(clicked)
+        clicked = !clicked
+
         val intent = Intent(this, MainActivity::class.java)
         getDataFromMainActivity1.launch(intent)
     }
 
     fun onQRCButtonClick(view: View) {
+        setVisibility(clicked)
+        setAnimation(clicked)
+        clicked = !clicked
+
         try {
             val intent = Intent("com.google.zxing.client.android.SCAN")
             intent.putExtra("SCAN_MODE", "QR_CODE_MODE")
@@ -132,8 +149,44 @@ class MainActivity1 : AppCompatActivity() {
     }
 
     fun onAboutButtonClick(view: View) {
+        setVisibility(clicked)
+        setAnimation(clicked)
+        clicked = !clicked
         val intent = Intent(this, AboutActivity::class.java)
         startActivity(intent)
     }
+
+    fun onMenuButtonClick(view:View){
+        setVisibility(clicked)
+        setAnimation(clicked)
+        clicked = !clicked
+    }
+    private fun setVisibility(clicked: Boolean) {
+        if(!clicked){
+            binding.fabAbout.visibility = View.VISIBLE
+            binding.fabAdd.visibility = View.VISIBLE
+            binding.fabQRCode.visibility = View.VISIBLE
+        }else{
+            binding.fabAdd.visibility = View.INVISIBLE
+            binding.fabQRCode.visibility = View.INVISIBLE
+            binding.fabAbout.visibility = View.INVISIBLE
+        }
+    }
+
+    private fun setAnimation(clicked: Boolean) {
+        if(!clicked){
+            binding.fabAdd.startAnimation(fromBottom)
+            binding.fabQRCode.startAnimation(fromBottom)
+            binding.fabAbout.startAnimation(fromBottom)
+            binding.fabMenu.startAnimation(rotateOpen)
+        }else{
+            binding.fabAdd.startAnimation(toBottom)
+            binding.fabQRCode.startAnimation(toBottom)
+            binding.fabAbout.startAnimation(toBottom)
+            binding.fabMenu.startAnimation(rotateClose)
+        }
+    }
+
+
 
 }

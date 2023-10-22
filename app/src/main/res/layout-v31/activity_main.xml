@@ -12,92 +12,112 @@
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_marginTop="92dp"
+        android:background="@drawable/inputborder"
+        android:drawableStart="@drawable/property_type_icon"
+        android:drawablePadding="10dp"
         android:ems="10"
         android:hint="Insert property type"
         android:inputType="text"
+        android:paddingStart="5dp"
+        android:paddingTop="10dp"
+        android:paddingEnd="5dp"
+        android:paddingBottom="10dp"
+        android:textColor="@color/black"
+        android:textColorHighlight="@color/black"
+        android:textColorHint="@android:color/darker_gray"
+        android:textCursorDrawable="@color/black"
+        android:textSize="20sp"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.0"
-        app:layout_constraintStart_toStartOf="@+id/guideline"
+        app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
     <TextView
         android:id="@+id/textViewPropertyType"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="36dp"
+        android:layout_marginBottom="5dp"
+        android:labelFor="@+id/editTextPropertyType"
         android:text="Property Type"
-        app:layout_constraintBaseline_toBaselineOf="@id/editTextPropertyType"
-        app:layout_constraintBottom_toBottomOf="@+id/editTextPropertyType"
-        app:layout_constraintEnd_toStartOf="@+id/guideline"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.826" />
+        app:layout_constraintBottom_toTopOf="@+id/editTextPropertyType"
+        app:layout_constraintStart_toStartOf="@id/editTextPropertyType" />
 
     <EditText
         android:id="@+id/editTextArea"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
-        android:layout_marginTop="172dp"
+        android:layout_marginTop="40dp"
+        android:background="@drawable/inputborder"
+        android:drawableStart="@drawable/area_icon"
+        android:drawablePadding="10dp"
         android:ems="10"
         android:hint="Insert area"
         android:inputType="numberDecimal"
+        android:paddingStart="5dp"
+        android:paddingTop="10dp"
+        android:paddingEnd="5dp"
+        android:paddingBottom="10dp"
+        android:textColor="@color/black"
+        android:textColorHighlight="@color/black"
+        android:textColorHint="@android:color/darker_gray"
+        android:textCursorDrawable="@color/black"
+        android:textSize="20sp"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.0"
-        app:layout_constraintStart_toStartOf="@+id/guideline"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/editTextPropertyType" />
 
     <EditText
         android:id="@+id/editTextPrice"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
-        android:layout_marginTop="256dp"
+        android:layout_marginTop="40dp"
+        android:background="@drawable/inputborder"
+        android:drawableStart="@drawable/price_icon"
+        android:drawablePadding="10dp"
         android:ems="10"
         android:hint="Insert price"
         android:inputType="numberDecimal"
+        android:paddingStart="5dp"
+        android:paddingTop="10dp"
+        android:paddingEnd="5dp"
+        android:paddingBottom="10dp"
+        android:textColor="@color/black"
+        android:textColorHighlight="@color/black"
+        android:textColorHint="@android:color/darker_gray"
+        android:textCursorDrawable="@color/black"
+        android:textSize="20sp"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.0"
-        app:layout_constraintStart_toStartOf="@+id/guideline"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintHorizontal_bias="0.526"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/editTextArea" />
 
     <TextView
         android:id="@+id/textViewArea"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="188dp"
+        android:layout_marginBottom="5dp"
+
         android:text="Area"
-        app:layout_constraintBaseline_toBaselineOf="@id/editTextArea"
-        app:layout_constraintEnd_toStartOf="@+id/guideline"
-        app:layout_constraintHorizontal_bias="0.822"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintBottom_toTopOf="@+id/editTextArea"
+        app:layout_constraintStart_toStartOf="@id/editTextArea" />
 
     <TextView
         android:id="@+id/textViewPrice"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="272dp"
+        android:layout_marginBottom="5dp"
         android:text="Price"
-        app:layout_constraintBaseline_toBaselineOf="@id/editTextPrice"
-        app:layout_constraintEnd_toStartOf="@+id/guideline"
-        app:layout_constraintHorizontal_bias="0.842"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
-
-    <androidx.constraintlayout.widget.Guideline
-        android:id="@+id/guideline"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:orientation="vertical"
-        app:layout_constraintGuide_percent="0.25" />
+        app:layout_constraintBottom_toTopOf="@+id/editTextPrice"
+        app:layout_constraintStart_toStartOf="@id/editTextPrice" />
 
     <ImageView
         android:id="@+id/imageView2"
         android:layout_width="62dp"
         android:layout_height="64dp"
-        android:layout_marginStart="20dp"
+        android:layout_marginStart="173dp"
         android:layout_marginTop="4dp"
-        app:layout_constraintEnd_toStartOf="@+id/guideline"
-        app:layout_constraintHorizontal_bias="0.0"
+        android:layout_marginEnd="167dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.5"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         app:srcCompat="@drawable/home96" />
@@ -106,12 +126,14 @@
         android:id="@+id/fabAdd1"
         android:layout_width="56dp"
         android:layout_height="56dp"
-        android:layout_marginTop="52dp"
-        android:layout_marginEnd="16dp"
+        android:layout_marginTop="50dp"
+        android:layout_marginEnd="15dp"
         android:clickable="true"
         android:onClick="onButtonAddClick"
+        app:backgroundTint="@color/blue_40"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/editTextPrice"
-        app:srcCompat="@android:drawable/ic_input_add" />
+        app:srcCompat="@android:drawable/ic_input_add"
+        app:tint="@color/blue_10" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

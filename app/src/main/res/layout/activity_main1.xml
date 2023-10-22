@@ -7,28 +7,67 @@
     tools:context=".MainActivity1">
 
     <com.google.android.material.floatingactionbutton.FloatingActionButton
-        android:id="@+id/fabAdd"
+        android:id="@+id/fabAbout"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginEnd="20dp"
+        android:layout_marginEnd="25dp"
         android:layout_marginBottom="20dp"
         android:clickable="true"
-        android:onClick="onAddButtonClick"
-        app:layout_constraintBottom_toBottomOf="parent"
+        android:visibility="invisible"
+        android:onClick="onAboutButtonClick"
+        app:backgroundTint="@color/blue_40"
+        app:tint="@color/blue_10"
+        app:layout_constraintBottom_toTopOf="@+id/fabQRCode"
         app:layout_constraintEnd_toEndOf="parent"
-        app:srcCompat="@android:drawable/ic_input_add" />
+        app:srcCompat="@android:drawable/ic_dialog_info"
+        android:focusable="true" />
 
     <com.google.android.material.floatingactionbutton.FloatingActionButton
         android:id="@+id/fabQRCode"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginEnd="20dp"
+        android:layout_marginEnd="25dp"
         android:layout_marginBottom="20dp"
         android:clickable="true"
         android:onClick="onQRCButtonClick"
+        android:visibility="invisible"
+        app:backgroundTint="@color/blue_40"
+        app:tint="@color/blue_10"
         app:layout_constraintBottom_toTopOf="@+id/fabAdd"
         app:layout_constraintEnd_toEndOf="parent"
-        app:srcCompat="@drawable/qricon64" />
+        app:srcCompat="@drawable/qricon64"
+        android:focusable="true" />
+
+    <com.google.android.material.floatingactionbutton.FloatingActionButton
+        android:id="@+id/fabAdd"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginEnd="25dp"
+        android:layout_marginBottom="20dp"
+        android:clickable="true"
+        android:onClick="onAddButtonClick"
+        android:visibility="invisible"
+        app:backgroundTint="@color/blue_40"
+        app:tint="@color/blue_10"
+        app:layout_constraintBottom_toTopOf="@+id/fabMenu"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:srcCompat="@android:drawable/ic_input_add"
+        android:focusable="true" />
+
+    <com.google.android.material.floatingactionbutton.FloatingActionButton
+        android:id="@+id/fabMenu"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginEnd="25dp"
+        android:layout_marginBottom="25dp"
+        android:clickable="true"
+        android:onClick="onMenuButtonClick"
+        app:backgroundTint="@color/blue_40"
+        app:tint="@color/blue_10"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:srcCompat="@drawable/menu_24"
+        android:focusable="true" />
 
     <TextView
         android:id="@+id/textViewHeading"
@@ -42,18 +81,6 @@
         app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
-
-    <com.google.android.material.floatingactionbutton.FloatingActionButton
-        android:id="@+id/fabAbout"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginEnd="20dp"
-        android:layout_marginBottom="20dp"
-        android:clickable="true"
-        android:onClick="onAboutButtonClick"
-        app:layout_constraintBottom_toTopOf="@+id/fabQRCode"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:srcCompat="@android:drawable/ic_dialog_info" />
 
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/recyclerView"

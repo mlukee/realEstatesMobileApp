@@ -50,7 +50,8 @@ class MainActivity : AppCompatActivity() {
 
 
         } catch (e: IllegalArgumentException) {
-            Toast.makeText(this, e.message, Toast.LENGTH_SHORT).show()
+            Toast.makeText(applicationContext, e.message, Toast.LENGTH_SHORT).show();
+
         }
 
     }

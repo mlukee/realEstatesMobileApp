@@ -15,66 +15,70 @@
         android:clickable="true"
         android:visibility="invisible"
         android:onClick="onAboutButtonClick"
-        app:backgroundTint="@color/blue_40"
-        app:tint="@color/blue_10"
         app:layout_constraintBottom_toTopOf="@+id/fabQRCode"
         app:layout_constraintEnd_toEndOf="parent"
         app:srcCompat="@android:drawable/ic_dialog_info"
+        android:contentDescription="@string/fabAbout"
         android:focusable="true" />
+    <!--        app:backgroundTint="@color/blue_40"-->
+    <!--        app:tint="@color/blue_10"-->
 
     <com.google.android.material.floatingactionbutton.FloatingActionButton
         android:id="@+id/fabQRCode"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginEnd="25dp"
-        android:layout_marginBottom="20dp"
+        android:layout_marginEnd="@dimen/margin_25"
+        android:layout_marginBottom="@dimen/margin_20"
         android:clickable="true"
         android:onClick="onQRCButtonClick"
         android:visibility="invisible"
-        app:backgroundTint="@color/blue_40"
-        app:tint="@color/blue_10"
         app:layout_constraintBottom_toTopOf="@+id/fabAdd"
         app:layout_constraintEnd_toEndOf="parent"
         app:srcCompat="@drawable/qricon64"
+        android:contentDescription="@string/fabQRCode"
         android:focusable="true" />
+    <!--        app:backgroundTint="@color/blue_40"-->
+    <!--        app:tint="@color/blue_10"-->
 
     <com.google.android.material.floatingactionbutton.FloatingActionButton
         android:id="@+id/fabAdd"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginEnd="25dp"
-        android:layout_marginBottom="20dp"
+        android:layout_marginEnd="@dimen/margin_25"
+        android:layout_marginBottom="@dimen/margin_20"
         android:clickable="true"
         android:onClick="onAddButtonClick"
         android:visibility="invisible"
-        app:backgroundTint="@color/blue_40"
-        app:tint="@color/blue_10"
         app:layout_constraintBottom_toTopOf="@+id/fabMenu"
         app:layout_constraintEnd_toEndOf="parent"
         app:srcCompat="@android:drawable/ic_input_add"
+        android:contentDescription="@string/fabAdd"
         android:focusable="true" />
+    <!--        app:backgroundTint="@color/blue_40"-->
+    <!--        app:tint="@color/blue_10"-->
 
     <com.google.android.material.floatingactionbutton.FloatingActionButton
         android:id="@+id/fabMenu"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginEnd="25dp"
-        android:layout_marginBottom="25dp"
+        android:layout_marginEnd="@dimen/margin_25"
+        android:layout_marginBottom="@dimen/margin_25"
         android:clickable="true"
         android:onClick="onMenuButtonClick"
-        app:backgroundTint="@color/blue_40"
-        app:tint="@color/blue_10"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:srcCompat="@drawable/menu_24"
+        android:contentDescription="@string/fabMenu"
         android:focusable="true" />
+<!--    app:backgroundTint="@color/blue_40"-->
+<!--    app:tint="@color/blue_10"-->
 
     <TextView
         android:id="@+id/textViewHeading"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
-        android:layout_marginTop="20dp"
-        android:text="Real Estates"
+        android:layout_marginTop="@dimen/margin_20"
+        android:text="@string/realEstatesTitle"
         android:textAlignment="center"
         android:textSize="22sp"
         app:layout_constraintEnd_toEndOf="parent"

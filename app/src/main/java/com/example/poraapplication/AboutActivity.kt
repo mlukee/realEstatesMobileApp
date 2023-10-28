@@ -12,5 +12,9 @@ class AboutActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         binding = ActivityAboutBinding.inflate(layoutInflater)
         setContentView(binding.root)
+        val text = getString(R.string.app_author_name, "mlukee")
+        binding.tvAuthor.text = text
+        val version = getString(R.string.app_version_tv, "3.0")
+        binding.tvAppVersion.text = version
     }
 }

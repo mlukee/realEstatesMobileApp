@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">Nepremičnine</string>
+    <string name="realEstatesTitle"><b>Nepremičnine</b></string>
+    <string name="aboutActivityTitle">O Aplikaciji</string>
+    <string name="app_name_tv">Ime aplikacije:</string>
+    <string name="app_description">Opis Aplikacije:</string>
+    <string name="app_version">Verzija:</string>
+    <string name="app_author">Avtor aplikacije:</string>
+    <string name="etHintInsertProperty">Vnesi tip nepremičnine...</string>
+    <string name="tvPropertyType">Tip nepremičnine</string>
+    <string name="etHintInsertArea">Vnesi površino...</string>
+    <string name="tvArea">Površina</string>
+    <string name="etHintInsertPrice">Vnesi ceno...</string>
+    <string name="tvPrice">Cena</string>
+</resources>

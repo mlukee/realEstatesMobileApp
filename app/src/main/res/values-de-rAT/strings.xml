@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">Grundstücke</string>
+    <string name="realEstatesTitle"><b>Grundstücke</b></string>
+    <string name="aboutActivityTitle">"Über Aktivität "</string>
+    <string name="app_name_tv">"App Name: "</string>
+    <string name="app_description">"App Beschreibung: "</string>
+    <string name="app_version">"App-Version: "</string>
+    <string name="app_author">App Autor:</string>
+    <string name="etHintInsertProperty">Eigenschaftstyp einfügen...</string>
+    <string name="tvPropertyType">"Eigenschaft Typ "</string>
+    <string name="etHintInsertArea">"Fläche einfügen... "</string>
+    <string name="tvArea">Fläche</string>
+    <string name="etHintInsertPrice">"Preis einfügen... "</string>
+    <string name="tvPrice">Preis</string>
+</resources>

@@ -8,28 +8,25 @@
     tools:context=".MainActivity">
 
     <EditText
+        android:height="50dp"
         android:id="@+id/editTextPropertyType"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_marginTop="92dp"
-        android:background="@drawable/inputborder"
         android:drawableStart="@drawable/property_type_icon"
         android:drawablePadding="10dp"
         android:ems="10"
-        android:hint="Insert property type"
+        android:hint="@string/etHintInsertProperty"
         android:inputType="text"
         android:paddingStart="5dp"
         android:paddingTop="10dp"
         android:paddingEnd="5dp"
         android:paddingBottom="10dp"
-        android:textColor="@color/black"
-        android:textColorHighlight="@color/black"
-        android:textColorHint="@android:color/darker_gray"
-        android:textCursorDrawable="@color/black"
         android:textSize="20sp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
+
 
     <TextView
         android:id="@+id/textViewPropertyType"
@@ -37,53 +34,46 @@
         android:layout_height="wrap_content"
         android:layout_marginBottom="5dp"
         android:labelFor="@+id/editTextPropertyType"
-        android:text="Property Type"
+        android:text="@string/tvPropertyType"
         app:layout_constraintBottom_toTopOf="@+id/editTextPropertyType"
         app:layout_constraintStart_toStartOf="@id/editTextPropertyType" />
 
     <EditText
+        android:height="50dp"
+        android:autofillHints="name"
         android:id="@+id/editTextArea"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_marginTop="40dp"
-        android:background="@drawable/inputborder"
         android:drawableStart="@drawable/area_icon"
         android:drawablePadding="10dp"
         android:ems="10"
-        android:hint="Insert area"
+        android:hint="@string/etHintInsertArea"
         android:inputType="numberDecimal"
         android:paddingStart="5dp"
         android:paddingTop="10dp"
         android:paddingEnd="5dp"
         android:paddingBottom="10dp"
-        android:textColor="@color/black"
-        android:textColorHighlight="@color/black"
-        android:textColorHint="@android:color/darker_gray"
-        android:textCursorDrawable="@color/black"
         android:textSize="20sp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/editTextPropertyType" />
 
     <EditText
+        android:height="50dp"
         android:id="@+id/editTextPrice"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_marginTop="40dp"
-        android:background="@drawable/inputborder"
         android:drawableStart="@drawable/price_icon"
         android:drawablePadding="10dp"
         android:ems="10"
-        android:hint="Insert price"
+        android:hint="@string/etHintInsertPrice"
         android:inputType="numberDecimal"
         android:paddingStart="5dp"
         android:paddingTop="10dp"
         android:paddingEnd="5dp"
         android:paddingBottom="10dp"
-        android:textColor="@color/black"
-        android:textColorHighlight="@color/black"
-        android:textColorHint="@android:color/darker_gray"
-        android:textCursorDrawable="@color/black"
         android:textSize="20sp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.526"
@@ -95,8 +85,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginBottom="5dp"
-
-        android:text="Area"
+        android:text="@string/tvArea"
         app:layout_constraintBottom_toTopOf="@+id/editTextArea"
         app:layout_constraintStart_toStartOf="@id/editTextArea" />
 
@@ -105,7 +94,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginBottom="5dp"
-        android:text="Price"
+        android:text="@string/tvPrice"
         app:layout_constraintBottom_toTopOf="@+id/editTextPrice"
         app:layout_constraintStart_toStartOf="@id/editTextPrice" />
 
@@ -130,10 +119,13 @@
         android:layout_marginEnd="15dp"
         android:clickable="true"
         android:onClick="onButtonAddClick"
-        app:backgroundTint="@color/blue_40"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/editTextPrice"
         app:srcCompat="@android:drawable/ic_input_add"
-        app:tint="@color/blue_10" />
+        android:focusable="true" />
+    <!--        app:backgroundTint="@color/blue_40"-->
+<!--    app:tint="@color/blue_10"-->
+
+
 
 </androidx.constraintlayout.widget.ConstraintLayout>

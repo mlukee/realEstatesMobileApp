@@ -1,6 +1,7 @@
 package com.example.poraapplication
 
 import android.annotation.SuppressLint
+import android.provider.Settings.System.getString
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -36,8 +37,8 @@ class RealEstateAdapter(private val realEstates: MutableList<RealEstate>) : Recy
     override fun onBindViewHolder(holder: RealEstateViewHolder, position: Int) {
         val realEstate = realEstates[position]
         holder.propertyType.text = realEstate.propertyType
-        holder.area.text = "${realEstate.area} m²"
-        holder.price.text = "${realEstate.price} €"
+        holder.area.text = String.format("%.2f m²", realEstate.area)
+        holder.price.text = String.format("%.2f €", realEstate.price)
         holder.image.setImageResource(R.drawable.home96)
     }
 }

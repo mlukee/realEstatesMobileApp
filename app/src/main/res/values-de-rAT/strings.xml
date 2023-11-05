@@ -2,7 +2,7 @@
 <resources>
     <string name="app_name">Grundstücke</string>
     <string name="realEstatesTitle"><b>Grundstücke</b></string>
-    <string name="aboutActivityTitle">"Über Aktivität "</string>
+    <string name="aboutActivityTitle"><i>Über Aktivität </i></string>
     <string name="app_name_tv">"App Name: "</string>
     <string name="app_description">"App Beschreibung: "</string>
     <string name="app_version">"App-Version: "</string>

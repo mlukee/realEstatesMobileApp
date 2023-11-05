@@ -2,7 +2,7 @@
 <resources>
     <string name="app_name">Nepremičnine</string>
     <string name="realEstatesTitle"><b>Nepremičnine</b></string>
-    <string name="aboutActivityTitle">O Aplikaciji</string>
+    <string name="aboutActivityTitle"><i>O Aplikaciji</i></string>
     <string name="app_name_tv">Ime aplikacije:</string>
     <string name="app_description">Opis Aplikacije:</string>
     <string name="app_version">Verzija:</string>

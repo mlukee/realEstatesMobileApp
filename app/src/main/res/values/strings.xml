@@ -9,7 +9,7 @@
 
     <!-- Strings for About Activity -->
     <string name="realEstatesTitle"><b>Real Estates</b></string>
-    <string name="aboutActivityTitle">About Activity</string>
+    <string name="aboutActivityTitle"><i>About Activity</i></string>
     <string name="app_name_tv">App Name:</string>
     <string name="app_description">App Description: </string>
     <string name="app_description_tv" translatable="false">To je mobilna aplikacija</string>

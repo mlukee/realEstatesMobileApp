@@ -12,7 +12,7 @@
         android:label="@string/app_name"
         android:roundIcon="@drawable/home96"
         android:supportsRtl="true"
-        android:theme="@style/Base.Theme.PORAapplication"
+        android:theme="@style/AppTheme"
         tools:targetApi="31">
         <activity
             android:name=".AboutActivity"

@@ -1,13 +1,15 @@
 package com.example.poraapplication
 
 import android.annotation.SuppressLint
-import android.provider.Settings.System.getString
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import com.example.lib.RealEstate
 import com.example.poraapplication.databinding.ListItemBinding
+import java.text.NumberFormat
+import java.util.Locale
+
 
 class RealEstateAdapter(private val realEstates: MutableList<RealEstate>) : RecyclerView.Adapter<RealEstateAdapter.RealEstateViewHolder>() {
 
@@ -38,7 +40,12 @@ class RealEstateAdapter(private val realEstates: MutableList<RealEstate>) : Recy
         val realEstate = realEstates[position]
         holder.propertyType.text = realEstate.propertyType
         holder.area.text = String.format("%.2f m²", realEstate.area)
-        holder.price.text = String.format("%.2f €", realEstate.price)
+        val numberFormat: NumberFormat = NumberFormat.getNumberInstance(Locale.GERMANY)
+        numberFormat.minimumFractionDigits = 2
+        numberFormat.maximumFractionDigits = 2
+        val formattedPrice: String = numberFormat.format(realEstate.price)
+
+        holder.price.text = "$formattedPrice €"
         holder.image.setImageResource(R.drawable.home96)
     }
 }

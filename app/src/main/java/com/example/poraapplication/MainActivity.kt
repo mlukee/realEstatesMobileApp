@@ -25,25 +25,25 @@ class MainActivity : AppCompatActivity() {
     }
 
     fun onButtonAddClick(view: View) {
-        val propertyType = binding1.editTextPropertyType.text.toString()
-        val areaText = binding1.editTextArea.text.toString()
-        val priceText = binding1.editTextPrice.text.toString()
+        val property = binding1.inputPropertyType?.editText?.text.toString()
+        val area = binding1.inputArea?.editText?.text.toString()
+        val price = binding1.inputPrice?.editText?.text.toString()
         try {
-            if (propertyType.isEmpty() || areaText.isEmpty() || priceText.isEmpty()) {
+            if (property.isEmpty() || area.isEmpty() || price.isEmpty()) {
                 throw IllegalArgumentException("All fields are required")
             }
 
-            val area = areaText.toDouble()
-            val price = priceText.toDouble()
+            val area = area.toDouble()
+            val price = price.toDouble()
 
             val intent = Intent(this, MainActivity1::class.java)
-            intent.putExtra(InputTypes.PROPERTY_TYPE.name, propertyType)
+            intent.putExtra(InputTypes.PROPERTY_TYPE.name, property)
             intent.putExtra(InputTypes.AREA.name, area)
             intent.putExtra(InputTypes.PRICE.name, price)
 
-            binding1.editTextPropertyType.text.clear()
-            binding1.editTextArea.text.clear()
-            binding1.editTextPrice.text.clear()
+            binding1.inputPropertyType?.editText?.text?.clear()
+            binding1.inputArea?.editText?.text?.clear()
+            binding1.inputPrice?.editText?.text?.clear()
 
             setResult(RESULT_OK, intent)
             finish()

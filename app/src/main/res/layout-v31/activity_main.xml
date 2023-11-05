@@ -7,96 +7,6 @@
     android:padding="10dp"
     tools:context=".MainActivity">
 
-    <EditText
-        android:height="50dp"
-        android:id="@+id/editTextPropertyType"
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="92dp"
-        android:drawableStart="@drawable/property_type_icon"
-        android:drawablePadding="@dimen/margin_10"
-        android:ems="10"
-        android:hint="@string/etHintInsertProperty"
-        android:inputType="text"
-        android:paddingStart="5dp"
-        android:paddingTop="@dimen/margin_10"
-        android:paddingEnd="5dp"
-        android:paddingBottom="@dimen/margin_10"
-        android:textSize="@dimen/text_size_20"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
-
-
-    <TextView
-        android:id="@+id/textViewPropertyType"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginBottom="5dp"
-        android:labelFor="@+id/editTextPropertyType"
-        android:text="@string/tvPropertyType"
-        app:layout_constraintBottom_toTopOf="@+id/editTextPropertyType"
-        app:layout_constraintStart_toStartOf="@id/editTextPropertyType" />
-
-    <EditText
-        android:height="50dp"
-        android:autofillHints="name"
-        android:id="@+id/editTextArea"
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="40dp"
-        android:drawableStart="@drawable/area_icon"
-        android:drawablePadding="@dimen/margin_10"
-        android:ems="10"
-        android:hint="@string/etHintInsertArea"
-        android:inputType="numberDecimal"
-        android:paddingStart="5dp"
-        android:paddingTop="@dimen/margin_10"
-        android:paddingEnd="5dp"
-        android:paddingBottom="@dimen/margin_10"
-        android:textSize="@dimen/text_size_20"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/editTextPropertyType" />
-
-    <EditText
-        android:height="50dp"
-        android:id="@+id/editTextPrice"
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="40dp"
-        android:drawableStart="@drawable/price_icon"
-        android:drawablePadding="10dp"
-        android:ems="10"
-        android:hint="@string/etHintInsertPrice"
-        android:inputType="numberDecimal"
-        android:paddingStart="5dp"
-        android:paddingTop="@dimen/margin_10"
-        android:paddingEnd="5dp"
-        android:paddingBottom="@dimen/margin_10"
-        android:textSize="@dimen/text_size_20"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.526"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/editTextArea" />
-
-    <TextView
-        android:id="@+id/textViewArea"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginBottom="5dp"
-        android:text="@string/tvArea"
-        app:layout_constraintBottom_toTopOf="@+id/editTextArea"
-        app:layout_constraintStart_toStartOf="@id/editTextArea" />
-
-    <TextView
-        android:id="@+id/textViewPrice"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginBottom="5dp"
-        android:text="@string/tvPrice"
-        app:layout_constraintBottom_toTopOf="@+id/editTextPrice"
-        app:layout_constraintStart_toStartOf="@id/editTextPrice" />
 
     <ImageView
         android:id="@+id/imageView2"
@@ -105,6 +15,7 @@
         android:layout_marginStart="173dp"
         android:layout_marginTop="4dp"
         android:layout_marginEnd="167dp"
+        android:contentDescription="@string/imgDescription"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.5"
         app:layout_constraintStart_toStartOf="parent"
@@ -115,55 +26,80 @@
         android:id="@+id/fabAdd1"
         android:layout_width="56dp"
         android:layout_height="56dp"
-        android:layout_marginTop="50dp"
-        android:layout_marginEnd="@dimen/margin_20"
+        android:layout_marginEnd="@dimen/margin_5"
+        android:layout_marginTop="@dimen/margin_25"
         android:clickable="true"
         android:contentDescription="@string/fabAdd"
+        android:focusable="true"
         android:onClick="onButtonAddClick"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/editTextPrice"
-        app:srcCompat="@android:drawable/ic_input_add"
-        android:focusable="true" />
+        app:layout_constraintTop_toBottomOf="@+id/input_price"
+        app:srcCompat="@android:drawable/ic_input_add" />
 
     <com.google.android.material.textfield.TextInputLayout
-        android:id="@+id/editTextPropertyType1"
+        android:id="@+id/input_property_type"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_marginStart="@dimen/margin_5"
+        android:layout_marginTop="100dp"
+        android:layout_marginEnd="@dimen/margin_5"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.421"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
+
+        <com.google.android.material.textfield.TextInputEditText
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:drawableStart="@drawable/property_type_icon"
+            android:drawablePadding="@dimen/margin_10"
+            android:textSize="@dimen/text_size_20"
+            android:hint="@string/tvPropertyType"
+            android:inputType="text" />
+    </com.google.android.material.textfield.TextInputLayout>
+
+    <com.google.android.material.textfield.TextInputLayout
+        android:id="@+id/input_area"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="@dimen/margin_5"
+        android:layout_marginTop="@dimen/margin_20"
+        android:layout_marginEnd="@dimen/margin_5"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.526"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/input_property_type">
+
+        <com.google.android.material.textfield.TextInputEditText
+            android:layout_width="match_parent"
+            android:inputType="numberDecimal"
+            android:layout_height="wrap_content"
+            android:drawableStart="@drawable/area_icon"
+            android:textSize="@dimen/text_size_20"
+            android:drawablePadding="@dimen/margin_10"
+            android:hint="@string/etHintInsertArea" />
+    </com.google.android.material.textfield.TextInputLayout>
+    <com.google.android.material.textfield.TextInputLayout
+        android:id="@+id/input_price"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="@dimen/margin_5"
+        android:layout_marginTop="@dimen/margin_20"
         android:layout_marginEnd="@dimen/margin_5"
         android:layout_marginBottom="148dp"
-        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.526"
-        app:layout_constraintStart_toStartOf="parent">
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/input_area">
 
         <com.google.android.material.textfield.TextInputEditText
-            android:id="@+id/etName"
             android:layout_width="match_parent"
+            android:inputType="numberDecimal"
+            android:drawableStart="@drawable/price_icon"
+            android:textSize="@dimen/text_size_20"
             android:layout_height="wrap_content"
-            android:drawableStart="@drawable/property_type_icon"
             android:drawablePadding="@dimen/margin_10"
-            android:hint="Property Type" />
+            android:hint="@string/tvPrice" />
     </com.google.android.material.textfield.TextInputLayout>
 
-    <com.google.android.material.textfield.TextInputLayout
-        android:id="@+id/editTextPropertyType2"
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="@dimen/margin_5"
-        android:layout_marginEnd="@dimen/margin_5"
-        android:layout_marginBottom="90dp"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.526"
-        app:layout_constraintStart_toStartOf="parent">
-
-        <com.google.android.material.textfield.TextInputEditText
-            android:id="@+id/etName2"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:drawableStart="@drawable/property_type_icon"
-            android:drawablePadding="@dimen/margin_10"
-            android:hint="Property Type" />
-    </com.google.android.material.textfield.TextInputLayout>
 </androidx.constraintlayout.widget.ConstraintLayout>

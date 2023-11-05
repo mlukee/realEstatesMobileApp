@@ -19,11 +19,11 @@
     <string name="app_author_name" translatable="false">%1$s</string>
 
     <!-- Strings for MainActivity -->
-    <string name="etHintInsertProperty">Insert property type...</string>
+    <string name="etHintInsertProperty">Insert property type…</string>
     <string name="tvPropertyType">Property Type</string>
-    <string name="etHintInsertArea">Insert area...</string>
+    <string name="etHintInsertArea">Insert area…</string>
     <string name="tvArea">Area</string>
-    <string name="etHintInsertPrice">Insert price...</string>
+    <string name="etHintInsertPrice">Insert price…</string>
     <string name="tvPrice">Price</string>
 
     <!-- Strings for ListItem -->

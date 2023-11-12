@@ -36,10 +36,30 @@ class MainActivity1 : AppCompatActivity() {
     private lateinit var recyclerView: RecyclerView
     private lateinit var realEstateAdapter: RealEstateAdapter
 
-    private val rotateOpen: Animation by lazy { AnimationUtils.loadAnimation(this, R.anim.rotate_open_anim) }
-    private val rotateClose: Animation by lazy { AnimationUtils.loadAnimation(this, R.anim.rotate_close_anim) }
-    private val fromBottom: Animation by lazy { AnimationUtils.loadAnimation(this, R.anim.from_bottom_anim) }
-    private val toBottom: Animation by lazy { AnimationUtils.loadAnimation(this, R.anim.to_bottom_anim) }
+    private val rotateOpen: Animation by lazy {
+        AnimationUtils.loadAnimation(
+            this,
+            R.anim.rotate_open_anim
+        )
+    }
+    private val rotateClose: Animation by lazy {
+        AnimationUtils.loadAnimation(
+            this,
+            R.anim.rotate_close_anim
+        )
+    }
+    private val fromBottom: Animation by lazy {
+        AnimationUtils.loadAnimation(
+            this,
+            R.anim.from_bottom_anim
+        )
+    }
+    private val toBottom: Animation by lazy {
+        AnimationUtils.loadAnimation(
+            this,
+            R.anim.to_bottom_anim
+        )
+    }
 
     private var clicked = false
 
@@ -47,10 +67,12 @@ class MainActivity1 : AppCompatActivity() {
         private const val KEY_ACTIVITY_OPENS_PREFIX = "activity_opens_"
 
         fun incrementActivityOpenCount(activity: AppCompatActivity) {
-            val sharedPreferences = activity.getSharedPreferences(MyApplication.PREFS_NAME, MODE_PRIVATE)
+            val sharedPreferences =
+                activity.getSharedPreferences(MyApplication.PREFS_NAME, MODE_PRIVATE)
             val className = activity.localClassName
             val currentCount = sharedPreferences.getInt(KEY_ACTIVITY_OPENS_PREFIX + className, 0)
-            sharedPreferences.edit().putInt(KEY_ACTIVITY_OPENS_PREFIX + className, currentCount + 1).apply()
+            sharedPreferences.edit().putInt(KEY_ACTIVITY_OPENS_PREFIX + className, currentCount + 1)
+                .apply()
         }
     }
 
@@ -177,22 +199,23 @@ class MainActivity1 : AppCompatActivity() {
         startActivity(intent)
     }
 
-    fun onMenuButtonClick(view:View){
+    fun onMenuButtonClick(view: View) {
         setVisibility(clicked)
         setAnimation(clicked)
         clicked = !clicked
     }
 
-    fun onSettingsButtonClick(view:View){
+    fun onSettingsButtonClick(view: View) {
         val intent = Intent(this, SettingsActivity::class.java)
         startActivity(intent)
     }
+
     private fun setVisibility(clicked: Boolean) {
-        if(!clicked){
+        if (!clicked) {
             binding.fabAbout.visibility = View.VISIBLE
             binding.fabAdd.visibility = View.VISIBLE
             binding.fabQRCode.visibility = View.VISIBLE
-        }else{
+        } else {
             binding.fabAdd.visibility = View.INVISIBLE
             binding.fabQRCode.visibility = View.INVISIBLE
             binding.fabAbout.visibility = View.INVISIBLE
@@ -200,12 +223,12 @@ class MainActivity1 : AppCompatActivity() {
     }
 
     private fun setAnimation(clicked: Boolean) {
-        if(!clicked){
+        if (!clicked) {
             binding.fabAdd.startAnimation(fromBottom)
             binding.fabQRCode.startAnimation(fromBottom)
             binding.fabAbout.startAnimation(fromBottom)
             binding.fabMenu.startAnimation(rotateOpen)
-        }else{
+        } else {
             binding.fabAdd.startAnimation(toBottom)
             binding.fabQRCode.startAnimation(toBottom)
             binding.fabAbout.startAnimation(toBottom)
@@ -217,9 +240,11 @@ class MainActivity1 : AppCompatActivity() {
         // Set the theme mode based on the SharedPreferences before setting the content view.
         val sharedPreferences = getSharedPreferences("Settings", MODE_PRIVATE)
         val isNightMode = sharedPreferences.getBoolean("theme", false)
-        AppCompatDelegate.setDefaultNightMode(
+        val mode =
             if (isNightMode) AppCompatDelegate.MODE_NIGHT_YES else AppCompatDelegate.MODE_NIGHT_NO
-        )
+        if (AppCompatDelegate.getDefaultNightMode() != mode) {
+            AppCompatDelegate.setDefaultNightMode(mode)
+        }
     }
 
 }

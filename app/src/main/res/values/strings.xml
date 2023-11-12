@@ -47,5 +47,7 @@
     <string name="appOpens">App Opens: </string>
     <string name="appOpens_tv" translatable="false">%1$s</string>
 
+    <string name="notifications">Notifications</string>
+
 
 </resources>

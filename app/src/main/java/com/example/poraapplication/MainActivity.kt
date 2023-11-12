@@ -18,8 +18,19 @@ class MainActivity : AppCompatActivity() {
     private lateinit var binding1: ActivityMainBinding
 
     private var qrCodeData: String? = null
+    companion object {
+        private const val KEY_ACTIVITY_OPENS_PREFIX = "activity_opens_"
+
+        fun incrementActivityOpenCount(activity: AppCompatActivity) {
+            val sharedPreferences = activity.getSharedPreferences(MyApplication.PREFS_NAME, MODE_PRIVATE)
+            val className = activity.localClassName
+            val currentCount = sharedPreferences.getInt(KEY_ACTIVITY_OPENS_PREFIX + className, 0)
+            sharedPreferences.edit().putInt(KEY_ACTIVITY_OPENS_PREFIX + className, currentCount + 1).apply()
+        }
+    }
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
+        incrementActivityOpenCount(this)
         binding1 = ActivityMainBinding.inflate(layoutInflater)
         setContentView(binding1.root)
     }

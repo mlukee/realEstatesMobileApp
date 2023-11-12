@@ -26,6 +26,7 @@ import androidx.appcompat.app.AppCompatDelegate
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.example.lib.RealEstateTransactions
+import java.util.Locale
 
 
 class MainActivity1 : AppCompatActivity() {
@@ -42,8 +43,20 @@ class MainActivity1 : AppCompatActivity() {
 
     private var clicked = false
 
+    companion object {
+        private const val KEY_ACTIVITY_OPENS_PREFIX = "activity_opens_"
+
+        fun incrementActivityOpenCount(activity: AppCompatActivity) {
+            val sharedPreferences = activity.getSharedPreferences(MyApplication.PREFS_NAME, MODE_PRIVATE)
+            val className = activity.localClassName
+            val currentCount = sharedPreferences.getInt(KEY_ACTIVITY_OPENS_PREFIX + className, 0)
+            sharedPreferences.edit().putInt(KEY_ACTIVITY_OPENS_PREFIX + className, currentCount + 1).apply()
+        }
+    }
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
+        incrementActivityOpenCount(this)
         binding = ActivityMain1Binding.inflate(layoutInflater)
 
         applyTheme()

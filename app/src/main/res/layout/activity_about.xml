@@ -105,4 +105,36 @@
         app:layout_constraintHorizontal_bias="0.014"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@id/tvAppVersion" />
+
+    <TextView
+        android:id="@+id/tvLabelUUID"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/UUID"
+        android:textSize="@dimen/text_size_12"
+        app:layout_constraintBottom_toTopOf="@id/tvUUID"
+        app:layout_constraintStart_toStartOf="@id/tvUUID"
+        />
+
+    <TextView
+        android:id="@+id/tvUUID"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="@dimen/margin_10"
+        android:layout_marginTop="32dp"
+        android:text="@string/UUID_tv"
+        android:textSize="@dimen/text_size_18"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.014"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/tvAuthor" />
+
+
+    <androidx.constraintlayout.widget.Guideline
+        android:id="@+id/guideline2"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        app:layout_constraintGuide_percent="0.48" />
+
 </androidx.constraintlayout.widget.ConstraintLayout>

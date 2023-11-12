@@ -41,17 +41,11 @@
 
     <string name="changeTheme">Change theme</string>
 
-    <string-array name="currency_options">
-        <item>EUR</item>
-        <item>USD</item>
-        <item>GBP</item>
-    </string-array>
+    <string name="UUID">UUID: </string>
+    <string name="UUID_tv" translatable="false">%1$s</string>
 
-    <string-array name="currency_values">
-        <item>EUR</item>
-        <item>USD</item>
-        <item>GBP</item>
-    </string-array>
+    <string name="appOpens">App Opens: </string>
+    <string name="appOpens_tv" translatable="false">%1$s</string>
 
 
 </resources>

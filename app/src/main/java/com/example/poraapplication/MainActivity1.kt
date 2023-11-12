@@ -22,6 +22,7 @@ import kotlin.random.Random
 import android.os.Vibrator
 import android.view.animation.Animation
 import android.view.animation.AnimationUtils
+import androidx.appcompat.app.AppCompatDelegate
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.example.lib.RealEstateTransactions
@@ -44,8 +45,10 @@ class MainActivity1 : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         binding = ActivityMain1Binding.inflate(layoutInflater)
-        setContentView(binding.root)
 
+        applyTheme()
+
+        setContentView(binding.root)
         recyclerView = binding.recyclerView
         recyclerView.setHasFixedSize(true)
         recyclerView.layoutManager = LinearLayoutManager(this)
@@ -197,6 +200,13 @@ class MainActivity1 : AppCompatActivity() {
         }
     }
 
-
+    private fun applyTheme() {
+        // Set the theme mode based on the SharedPreferences before setting the content view.
+        val sharedPreferences = getSharedPreferences("Settings", MODE_PRIVATE)
+        val isNightMode = sharedPreferences.getBoolean("theme", false)
+        AppCompatDelegate.setDefaultNightMode(
+            if (isNightMode) AppCompatDelegate.MODE_NIGHT_YES else AppCompatDelegate.MODE_NIGHT_NO
+        )
+    }
 
 }

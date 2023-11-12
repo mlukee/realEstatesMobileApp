@@ -10,12 +10,12 @@
         android:id="@+id/fabSettings"
         android:layout_width="wrap_content"
         android:layout_marginTop="@dimen/margin_10"
-        android:layout_marginRight="@dimen/margin_10"
+        android:layout_marginEnd="@dimen/margin_10"
         android:layout_height="wrap_content"
         android:onClick="onSettingsButtonClick"
         android:clickable="true"
         android:focusable="true"
-        android:src="@drawable/settings_icon"
+        app:srcCompat="@drawable/settings_icon"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 

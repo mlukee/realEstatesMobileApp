@@ -1,0 +1,56 @@
+[
+  {
+    "propertyType": "Performing Arts",
+    "area": 55.41,
+    "price": 102331.3,
+    "id": "6c6a8c7c-1d6d-45de-b1cf-e60e10e1102c"
+  },
+  {
+    "propertyType": "Law Practice",
+    "area": 98.91,
+    "price": 125245.61,
+    "id": "20f6edce-c8cd-4429-9dad-5b6662755641"
+  },
+  {
+    "propertyType": "Public Policy",
+    "area": 182.44,
+    "price": 410637.11,
+    "id": "b27b7867-cfe8-4c30-ab97-ed8aa01b8f82"
+  },
+  {
+    "propertyType": "Religious Institutions",
+    "area": 76.34,
+    "price": 316065.61,
+    "id": "b13feeac-b380-4126-8386-d818485e9507"
+  },
+  {
+    "propertyType": "Warehousing",
+    "area": 172.22,
+    "price": 356916.09,
+    "id": "38f35e22-3249-4872-8138-d91b6eab8928"
+  },
+  {
+    "propertyType": "Investment Banking",
+    "area": 84.33,
+    "price": 467008.38,
+    "id": "aff0d7ac-9e14-4431-873f-c4280bd5b2cd"
+  },
+  {
+    "propertyType": "Staffing and Recruiting",
+    "area": 117.94,
+    "price": 245659.34,
+    "id": "5545db31-b7e9-474b-9dc2-c1ba43c8f1c3"
+  },
+  {
+    "propertyType": "Building Materials",
+    "area": 134.9,
+    "price": 250981.14,
+    "id": "30b99f17-5d26-4c22-b909-53de91fb3ee3"
+  },
+  {
+    "propertyType": "Music",
+    "area": 186.51,
+    "price": 198291.46,
+    "id": "f4d15e74-05a6-4ddb-b85d-b45893f3995e"
+  }
+]

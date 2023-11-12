@@ -12,7 +12,7 @@ import kotlinx.serialization.encoding.Encoder
 data class RealEstate(
     val propertyType: String,
     val area: Double,
-    val price: Double,
+    var price: Double,
     @SerialName("id")
     @Serializable(with = UUIDSerializer::class)
     val id: UUID = UUID.randomUUID()

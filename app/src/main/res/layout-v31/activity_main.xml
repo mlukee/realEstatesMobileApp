@@ -77,7 +77,7 @@
             android:drawableStart="@drawable/area_icon"
             android:textSize="@dimen/text_size_20"
             android:drawablePadding="@dimen/margin_10"
-            android:hint="@string/etHintInsertArea" />
+            android:hint="@string/tvArea" />
     </com.google.android.material.textfield.TextInputLayout>
     <com.google.android.material.textfield.TextInputLayout
         android:id="@+id/input_price"

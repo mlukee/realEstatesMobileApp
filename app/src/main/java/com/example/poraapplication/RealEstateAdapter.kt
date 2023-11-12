@@ -11,7 +11,7 @@ import java.text.NumberFormat
 import java.util.Locale
 
 
-class RealEstateAdapter(private val realEstates: MutableList<RealEstate>) : RecyclerView.Adapter<RealEstateAdapter.RealEstateViewHolder>() {
+class RealEstateAdapter(private val app: MyApplication) : RecyclerView.Adapter<RealEstateAdapter.RealEstateViewHolder>() {
 
     class RealEstateViewHolder(itemView:View): RecyclerView.ViewHolder(itemView) {
         private val binding = ListItemBinding.bind(itemView)
@@ -27,17 +27,17 @@ class RealEstateAdapter(private val realEstates: MutableList<RealEstate>) : Recy
     }
 
     override fun getItemCount(): Int {
-        return realEstates.size
+        return app.transactions.getRealEstateSize()
     }
 
     fun addRealEstate(realEstate: RealEstate) {
-        realEstates.add(realEstate)
-        notifyItemInserted(realEstates.size - 1)
+        app.transactions.addRealEstate(realEstate)
+        notifyItemInserted(app.transactions.realEstates.size - 1)
     }
 
     @SuppressLint("SetTextI18n")
     override fun onBindViewHolder(holder: RealEstateViewHolder, position: Int) {
-        val realEstate = realEstates[position]
+        val realEstate = app.transactions.realEstates[position]
         holder.propertyType.text = realEstate.propertyType
         holder.area.text = String.format("%.2f m²", realEstate.area)
         val numberFormat: NumberFormat = NumberFormat.getNumberInstance(Locale.GERMANY)

@@ -13,4 +13,5 @@
     <string name="tvArea">Površina</string>
     <string name="etHintInsertPrice">Vnesi ceno...</string>
     <string name="tvPrice">Cena</string>
+    <string name="settingsActivityTitle"><i>Nastavitve</i></string>
 </resources>

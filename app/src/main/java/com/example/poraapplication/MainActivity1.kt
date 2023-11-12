@@ -24,12 +24,13 @@ import android.view.animation.Animation
 import android.view.animation.AnimationUtils
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
+import com.example.lib.RealEstateTransactions
 
 
 class MainActivity1 : AppCompatActivity() {
     private lateinit var binding: ActivityMain1Binding
+    lateinit var app: MyApplication
     private val faker = Faker()
-    private var realEstates = MutableList<RealEstate> (0) { RealEstate("", 0.0, 0.0) }
     private lateinit var recyclerView: RecyclerView
     private lateinit var realEstateAdapter: RealEstateAdapter
 
@@ -58,8 +59,14 @@ class MainActivity1 : AppCompatActivity() {
                     .toDouble()
             )
         }
+        app = application as MyApplication
 
-        realEstateAdapter = RealEstateAdapter(realEstates.toMutableList())
+        realEstateAdapter = RealEstateAdapter(app)
+
+        realEstates.forEach { realEstate ->
+            realEstateAdapter.addRealEstate(realEstate)
+        }
+
         recyclerView.adapter = realEstateAdapter
 
     }
@@ -73,7 +80,6 @@ class MainActivity1 : AppCompatActivity() {
                 val area = intent?.getDoubleExtra(InputTypes.AREA.name, 0.0)
                 val price = intent?.getDoubleExtra(InputTypes.PRICE.name, 0.0)
                 val realEstate = RealEstate(propertyType!!, area!!, price!!)
-                realEstates.add(realEstate)
                 realEstateAdapter.addRealEstate(realEstate)
             }
         }
@@ -89,7 +95,6 @@ class MainActivity1 : AppCompatActivity() {
                 if (parsedRealestate != null) {
                     Toast.makeText(this, "Got RealEstate.", Toast.LENGTH_SHORT).show()
                     vibrate()
-                    realEstates.add(parsedRealestate)
                     realEstateAdapter.addRealEstate(parsedRealestate)
                 }
             } else {
@@ -160,6 +165,11 @@ class MainActivity1 : AppCompatActivity() {
         setVisibility(clicked)
         setAnimation(clicked)
         clicked = !clicked
+    }
+
+    fun onSettingsButtonClick(view:View){
+        val intent = Intent(this, SettingsActivity::class.java)
+        startActivity(intent)
     }
     private fun setVisibility(clicked: Boolean) {
         if(!clicked){

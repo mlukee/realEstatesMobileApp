@@ -33,6 +33,16 @@ class MainActivity : AppCompatActivity() {
         incrementActivityOpenCount(this)
         binding1 = ActivityMainBinding.inflate(layoutInflater)
         setContentView(binding1.root)
+
+        if(intent.hasExtra("AREA") && intent.hasExtra("PRICE") && intent.hasExtra("PROPERTY_TYPE")){
+            val property = intent.getStringExtra("PROPERTY_TYPE")
+            val area = intent.getDoubleExtra("AREA", 0.0)
+            val price = intent.getDoubleExtra("PRICE", 0.0)
+            binding1.inputPropertyType?.editText?.setText(property)
+            binding1.inputArea?.editText?.setText(area.toString())
+            binding1.inputPrice?.editText?.setText(price.toString())
+        }
+
     }
 
     fun onButtonAddClick(view: View) {

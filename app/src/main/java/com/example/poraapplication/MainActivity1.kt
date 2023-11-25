@@ -1,6 +1,7 @@
 package com.example.poraapplication
 
 import android.app.Activity
+import android.app.AlertDialog
 import android.content.Context
 import android.content.Intent
 import android.net.Uri
@@ -88,22 +89,53 @@ class MainActivity1 : AppCompatActivity() {
         recyclerView.setHasFixedSize(true)
         recyclerView.layoutManager = LinearLayoutManager(this)
 
-        val realEstates = (1..3).map {
-            RealEstate(
-                faker.company.industry(),
-                Random.nextDouble(50.0, 200.0).toBigDecimal().setScale(2, RoundingMode.DOWN)
-                    .toDouble(),
-                Random.nextDouble(50000.0, 500000.0).toBigDecimal().setScale(2, RoundingMode.DOWN)
-                    .toDouble()
-            )
-        }
         app = application as MyApplication
 
         realEstateAdapter = RealEstateAdapter(app)
 
-        realEstates.forEach { realEstate ->
-            realEstateAdapter.addRealEstate(realEstate)
-        }
+        realEstateAdapter.setOnItemClickListener(object: RealEstateAdapter.OnItemClickListener {
+            override fun onItemClick(realEstate: RealEstate) {
+                val intent = Intent(this@MainActivity1, MainActivity::class.java)
+                intent.putExtra("AREA", realEstate.area)
+                intent.putExtra("PRICE", realEstate.price)
+                intent.putExtra("PROPERTY_TYPE", realEstate.propertyType)
+                intent.putExtra("POSITION", app.transactions.realEstates.indexOf(realEstate))
+                updateDataFromMainActivity.launch(intent)
+            }
+
+            override fun onItemLongClick(realEstate: RealEstate): Boolean {
+                val builder = AlertDialog.Builder(this@MainActivity1)
+                builder.setTitle("Delete RealEstate")
+                builder.setMessage("Are you sure you want to delete this RealEstate?")
+                builder.setPositiveButton("Yes") { _, _ ->
+                    realEstateAdapter.removeRealEstate(realEstate)
+                    Toast.makeText(
+                        this@MainActivity1,
+                        "Successfully removed: ${realEstate.propertyType}",
+                        Toast.LENGTH_SHORT
+                    ).show()
+                }
+                builder.setNeutralButton("Cancel") { _, _ ->
+                    Toast.makeText(
+                        this@MainActivity1,
+                        "Cancelled",
+                        Toast.LENGTH_SHORT
+                    ).show()
+                }
+
+                builder.setNegativeButton("No") { dialogInterface, which ->
+                    Toast.makeText(
+                        this@MainActivity1,
+                        "Cancelled",
+                        Toast.LENGTH_SHORT
+                    ).show()
+                }
+                val alertDialog: AlertDialog = builder.create()
+                alertDialog.setCancelable(false)
+                alertDialog.show()
+                return true
+            }
+        })
 
         recyclerView.adapter = realEstateAdapter
 
@@ -121,6 +153,21 @@ class MainActivity1 : AppCompatActivity() {
                 realEstateAdapter.addRealEstate(realEstate)
             }
         }
+
+    private val updateDataFromMainActivity =
+        registerForActivityResult(ActivityResultContracts.StartActivityForResult()) { result: ActivityResult ->
+            if (result.resultCode == Activity.RESULT_OK) {
+                val intent = result.data
+                val propertyType = intent?.getStringExtra(InputTypes.PROPERTY_TYPE.name)
+                val area = intent?.getDoubleExtra(InputTypes.AREA.name, 0.0)
+                val price = intent?.getDoubleExtra(InputTypes.PRICE.name, 0.0)
+                val position = intent?.getIntExtra("POSITION", 0)
+                val realEstate = RealEstate(propertyType!!, area!!, price!!)
+                realEstateAdapter.updateRealEstate(realEstate, position!!)
+            }
+        }
+
+    //TODO: Update doesn't work
 
     private val getDataFromQRCode =
         registerForActivityResult(ActivityResultContracts.StartActivityForResult()) { result ->

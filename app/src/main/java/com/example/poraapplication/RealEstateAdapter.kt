@@ -11,14 +11,32 @@ import java.text.NumberFormat
 import java.util.Locale
 
 
-class RealEstateAdapter(private val app: MyApplication) : RecyclerView.Adapter<RealEstateAdapter.RealEstateViewHolder>() {
+class RealEstateAdapter(
+    private val app: MyApplication,
+) : RecyclerView.Adapter<RealEstateAdapter.RealEstateViewHolder>() {
 
-    class RealEstateViewHolder(itemView:View): RecyclerView.ViewHolder(itemView) {
+    private var onItemClickListener: OnItemClickListener? = null
+
+    interface OnItemClickListener {
+        fun onItemClick(realEstate: RealEstate)
+        fun onItemLongClick(realEstate: RealEstate): Boolean
+    }
+
+    class RealEstateViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
         private val binding = ListItemBinding.bind(itemView)
         val image = binding.imageView
         val propertyType = binding.tvListItemHeading
         val area = binding.tvListItemBody
         val price = binding.tvListItemPrice
+
+        fun bind(realEstate: RealEstate, listener: OnItemClickListener) {
+            itemView.setOnClickListener {
+                listener.onItemClick(realEstate)
+            }
+            itemView.setOnLongClickListener {
+                listener.onItemLongClick(realEstate)
+            }
+        }
     }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): RealEstateViewHolder {
@@ -32,7 +50,18 @@ class RealEstateAdapter(private val app: MyApplication) : RecyclerView.Adapter<R
 
     fun addRealEstate(realEstate: RealEstate) {
         app.transactions.addRealEstate(realEstate)
+        app.file.writeText(app.transactions.serializeRealEstateList())
         notifyItemInserted(app.transactions.realEstates.size - 1)
+    }
+
+    fun removeRealEstate(realEstate: RealEstate) {
+        val position = app.transactions.realEstates.indexOf(realEstate)
+        if (position != -1) {
+            app.transactions.removeRealEstate(realEstate)
+            app.file.writeText(app.transactions.serializeRealEstateList())
+            notifyItemRemoved(position)
+            notifyItemRangeChanged(position, app.transactions.realEstates.size)
+        }
     }
 
     @SuppressLint("SetTextI18n")
@@ -47,5 +76,27 @@ class RealEstateAdapter(private val app: MyApplication) : RecyclerView.Adapter<R
 
         holder.price.text = "$formattedPrice €"
         holder.image.setImageResource(R.drawable.home96)
+
+        holder.itemView.setOnClickListener {
+            onItemClickListener?.onItemClick(realEstate)
+        }
+        holder.itemView.setOnLongClickListener {
+            onItemClickListener?.onItemLongClick(realEstate)
+            true
+        }
+
+    }
+
+    fun setOnItemClickListener(listener: OnItemClickListener) {
+        onItemClickListener = listener
+    }
+
+    fun updateRealEstate(realEstate: RealEstate, position: Int) {
+        app.transactions.updateRealEstate(realEstate)
+        notifyItemChanged(position)
+    }
+
+    interface OnClickListener {
+        fun onClick(position: Int, model: RealEstate)
     }
 }

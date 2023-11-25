@@ -95,8 +95,4 @@ class RealEstateAdapter(
         app.transactions.updateRealEstate(realEstate)
         notifyItemChanged(position)
     }
-
-    interface OnClickListener {
-        fun onClick(position: Int, model: RealEstate)
-    }
 }

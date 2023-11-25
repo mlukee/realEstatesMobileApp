@@ -10,11 +10,7 @@ import java.io.File
 import java.math.RoundingMode
 import java.util.UUID
 import kotlin.random.Random
-import io.github.serpro69.kfaker.Faker
 import io.github.serpro69.kfaker.faker
-import kotlinx.serialization.encodeToString
-import kotlinx.serialization.json.Json
-
 
 const val FILE_NAME = "real_estate_data.json"
 

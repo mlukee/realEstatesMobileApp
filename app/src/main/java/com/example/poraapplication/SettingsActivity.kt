@@ -1,17 +1,10 @@
 package com.example.poraapplication
 
-import android.R
-import android.content.res.Configuration
-import android.content.res.Resources
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.view.View
-import android.widget.AdapterView
-import android.widget.ArrayAdapter
 import androidx.appcompat.app.AppCompatDelegate
-import com.example.poraapplication.databinding.ActivityMain1Binding
 import com.example.poraapplication.databinding.ActivitySettingsBinding
-import java.util.Locale
 
 class SettingsActivity : AppCompatActivity() {
     private lateinit var binding: ActivitySettingsBinding

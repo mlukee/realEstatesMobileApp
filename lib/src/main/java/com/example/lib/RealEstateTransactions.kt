@@ -3,7 +3,7 @@ package com.example.lib
 import kotlinx.serialization.encodeToString
 import kotlinx.serialization.json.Json
 
-class RealEstateTransactions() {
+class RealEstateTransactions {
     var realEstates: MutableList<RealEstate> = mutableListOf()
 
     fun addRealEstate(realEstate: RealEstate) {
@@ -35,8 +35,8 @@ class RealEstateTransactions() {
         return Json.encodeToString(realEstates)
     }
 
-    fun deserializeRealEstateList(json: String): List<RealEstate> {
-        return Json.decodeFromString(json)
-    }
+//    fun deserializeRealEstateList(json: String): List<RealEstate> {
+//        return Json.decodeFromString(json)
+//    }
 
 }

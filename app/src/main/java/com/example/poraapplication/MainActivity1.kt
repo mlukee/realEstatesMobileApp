@@ -9,31 +9,23 @@ import android.os.Build
 import android.os.Bundle
 import android.os.VibrationEffect
 import android.view.View
-import android.widget.ArrayAdapter
 import android.widget.Toast
 import androidx.activity.result.ActivityResult
 import androidx.activity.result.contract.ActivityResultContracts
 import androidx.appcompat.app.AppCompatActivity
 import com.example.lib.RealEstate
 import com.example.poraapplication.databinding.ActivityMain1Binding
-import io.github.serpro69.kfaker.Faker
 import kotlinx.serialization.json.Json
-import java.math.RoundingMode
-import kotlin.random.Random
 import android.os.Vibrator
 import android.view.animation.Animation
 import android.view.animation.AnimationUtils
 import androidx.appcompat.app.AppCompatDelegate
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
-import com.example.lib.RealEstateTransactions
-import java.util.Locale
-
 
 class MainActivity1 : AppCompatActivity() {
     private lateinit var binding: ActivityMain1Binding
     lateinit var app: MyApplication
-    private val faker = Faker()
     private lateinit var recyclerView: RecyclerView
     private lateinit var realEstateAdapter: RealEstateAdapter
 
@@ -123,7 +115,7 @@ class MainActivity1 : AppCompatActivity() {
                     ).show()
                 }
 
-                builder.setNegativeButton("No") { dialogInterface, which ->
+                builder.setNegativeButton("No") { _, _ ->
                     Toast.makeText(
                         this@MainActivity1,
                         "Cancelled",
@@ -140,7 +132,6 @@ class MainActivity1 : AppCompatActivity() {
         recyclerView.adapter = realEstateAdapter
 
     }
-    //TODO: Create Detailed activity if time allows
 
     private val getDataFromMainActivity1 =
         registerForActivityResult(ActivityResultContracts.StartActivityForResult()) { result: ActivityResult ->
@@ -192,7 +183,7 @@ class MainActivity1 : AppCompatActivity() {
             val realEstate = Json.decodeFromString<RealEstate>(scannedValue!!)
             realEstate
         } catch (e: Exception) {
-            Toast.makeText(applicationContext, "Failed to parse text.", Toast.LENGTH_SHORT).show();
+            Toast.makeText(applicationContext, "Failed to parse text.", Toast.LENGTH_SHORT).show()
             null
         }
     }

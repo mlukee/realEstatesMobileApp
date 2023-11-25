@@ -92,7 +92,8 @@ class RealEstateAdapter(
     }
 
     fun updateRealEstate(realEstate: RealEstate, position: Int) {
-        app.transactions.updateRealEstate(realEstate)
+        app.transactions.updateRealEstate(realEstate, position)
+        app.file.writeText(app.transactions.serializeRealEstateList())
         notifyItemChanged(position)
     }
 }

@@ -20,10 +20,9 @@ class RealEstateTransactions {
     }
 
     //update realestate
-    fun updateRealEstate(realEstate: RealEstate) {
-        val index = realEstates.indexOf(realEstate)
-        if (index != -1) {
-            realEstates[index] = realEstate
+    fun updateRealEstate(realEstate: RealEstate, position : Int) {
+        if (position != -1) {
+            realEstates[position] = realEstate
         }
     }
 

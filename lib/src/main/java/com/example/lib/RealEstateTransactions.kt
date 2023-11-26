@@ -8,6 +8,7 @@ class RealEstateTransactions {
 
     fun addRealEstate(realEstate: RealEstate) {
         realEstates.add(realEstate)
+
     }
 
     fun getRealEstateSize(): Int {
@@ -22,7 +23,9 @@ class RealEstateTransactions {
     //update realestate
     fun updateRealEstate(realEstate: RealEstate, position : Int) {
         if (position != -1) {
-            realEstates[position] = realEstate
+            realEstates[position].price = realEstate.price
+            realEstates[position].area = realEstate.area
+            realEstates[position].propertyType = realEstate.propertyType
         }
     }
 

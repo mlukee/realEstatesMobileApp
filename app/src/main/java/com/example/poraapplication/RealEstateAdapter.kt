@@ -28,15 +28,6 @@ class RealEstateAdapter(
         val propertyType = binding.tvListItemHeading
         val area = binding.tvListItemBody
         val price = binding.tvListItemPrice
-
-        fun bind(realEstate: RealEstate, listener: OnItemClickListener) {
-            itemView.setOnClickListener {
-                listener.onItemClick(realEstate)
-            }
-            itemView.setOnLongClickListener {
-                listener.onItemLongClick(realEstate)
-            }
-        }
     }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): RealEstateViewHolder {

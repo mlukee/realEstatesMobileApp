@@ -92,6 +92,12 @@ class MainActivity1 : AppCompatActivity() {
                 intent.putExtra("PRICE", realEstate.price)
                 intent.putExtra("PROPERTY_TYPE", realEstate.propertyType)
                 intent.putExtra("POSITION", app.transactions.realEstates.indexOf(realEstate))
+                Toast.makeText(
+                    this@MainActivity1,
+                    "Index of ${realEstate.propertyType} is ${app.transactions.realEstates.indexOf(realEstate)}",
+                    Toast.LENGTH_SHORT
+                ).show()
+                //TODO: DELETE THIS
                 updateDataFromMainActivity.launch(intent)
             }
 
@@ -153,12 +159,15 @@ class MainActivity1 : AppCompatActivity() {
                 val area = intent?.getDoubleExtra(InputTypes.AREA.name, 0.0)
                 val price = intent?.getDoubleExtra(InputTypes.PRICE.name, 0.0)
                 val position = intent?.getIntExtra("POSITION", 0)
+                Toast.makeText(
+                    this@MainActivity1,
+                    "Index is: ${position}",
+                    Toast.LENGTH_SHORT
+                ).show()
                 val realEstate = RealEstate(propertyType!!, area!!, price!!)
                 realEstateAdapter.updateRealEstate(realEstate, position!!)
             }
         }
-
-    //TODO: Update doesn't work
 
     private val getDataFromQRCode =
         registerForActivityResult(ActivityResultContracts.StartActivityForResult()) { result ->

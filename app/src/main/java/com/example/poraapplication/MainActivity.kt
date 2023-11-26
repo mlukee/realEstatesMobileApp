@@ -41,6 +41,10 @@ class MainActivity : AppCompatActivity() {
         val property = binding1.inputPropertyType?.editText?.text.toString()
         val etArea = binding1.inputArea?.editText?.text.toString()
         val etPrice = binding1.inputPrice?.editText?.text.toString()
+        var position = 0;
+        if(intent.hasExtra("POSITION")){
+            position = intent.getIntExtra("POSITION", 0)
+        }
         try {
             if (property.isEmpty() || etArea.isEmpty() || etPrice.isEmpty()) {
                 throw IllegalArgumentException("All fields are required")
@@ -53,6 +57,7 @@ class MainActivity : AppCompatActivity() {
             intent.putExtra(InputTypes.PROPERTY_TYPE.name, property)
             intent.putExtra(InputTypes.AREA.name, area)
             intent.putExtra(InputTypes.PRICE.name, price)
+            intent.putExtra("POSITION", position)
 
             binding1.inputPropertyType?.editText?.text?.clear()
             binding1.inputArea?.editText?.text?.clear()

@@ -36,6 +36,7 @@ class MyApplication : Application() {
             sharedPreferences.edit().putInt(KEY_APP_BACKGROUND, background + 1).apply()
         }
     }
+
     override fun onCreate() {
         super.onCreate()
         incrementAppOpenCount(this)
@@ -53,28 +54,20 @@ class MyApplication : Application() {
         } else {
             uuid = sharedPreferences.getString("uuid", "")!!
         }
-//        val realEstates = (1..100).map {
-//            RealEstate(
-//                faker {  }.company.industry(),
-//                Random.nextDouble(50.0, 200.0).toBigDecimal().setScale(2, RoundingMode.DOWN)
-//                    .toDouble(),
-//                Random.nextDouble(50000.0, 500000.0).toBigDecimal().setScale(2, RoundingMode.DOWN)
-//                    .toDouble()
-//            )
-//        }
-//        transactions.addRealEstates(realEstates)
     }
 
-    private fun initData(){
-        if(file.exists()){
+    private fun initData() {
+        if (file.exists()) {
             val json = file.readText()
             transactions.realEstates = deserializeRealEstateList(json).toMutableList()
-        }else{
+        } else {
             val realEstates = (1..100).map {
                 RealEstate(
                     faker {}.company.industry(),
-                    Random.nextDouble(50.0, 200.0).toBigDecimal().setScale(2, RoundingMode.DOWN).toDouble(),
-                    Random.nextDouble(50000.0, 500000.0).toBigDecimal().setScale(2, RoundingMode.DOWN)
+                    Random.nextDouble(50.0, 200.0).toBigDecimal().setScale(2, RoundingMode.DOWN)
+                        .toDouble(),
+                    Random.nextDouble(50000.0, 500000.0).toBigDecimal()
+                        .setScale(2, RoundingMode.DOWN)
                         .toDouble()
                 )
             }

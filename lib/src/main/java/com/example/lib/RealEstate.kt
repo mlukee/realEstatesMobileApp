@@ -10,8 +10,8 @@ import kotlinx.serialization.encoding.Encoder
 
 @Serializable
 data class RealEstate(
-    val propertyType: String,
-    val area: Double,
+    var propertyType: String,
+    var area: Double,
     var price: Double,
     @SerialName("id")
     @Serializable(with = UUIDSerializer::class)
